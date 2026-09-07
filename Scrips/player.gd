@@ -18,13 +18,13 @@ func _physics_process(delta: float) -> void:
 	time_since_ground += delta * 1000
 
 	# Handle jump.
-	if Input.is_action_pressed("ui_accept") and not has_jumped and time_since_ground < 125:
+	if Input.is_action_pressed("jump") and not has_jumped and time_since_ground < 125:
 		velocity.y = JUMP_VELOCITY
 		has_jumped = true
 
 	# Get the input direction and handle the movement/deceleration.
 	# As good practice, you should replace UI actions with custom gameplay actions.
-	var direction := Input.get_axis("ui_left", "ui_right")
+	var direction := Input.get_axis("move_left", "move_right")
 	if direction:
 		$AnimatedSprite2D.flip_h = true if direction < 0 else false
 		velocity.x = direction * SPEED
