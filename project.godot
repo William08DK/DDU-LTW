@@ -14,6 +14,14 @@ config/name="DDU"
 run/main_scene="uid://bnyx3pvgo3t8"
 config/features=PackedStringArray("4.7", "Forward Plus")
 
+[audio]
+
+buses/default_bus_layout="uid://c0vnr7xervot4"
+
+[autoload]
+
+Music="*uid://brjp7dli5qdfr"
+
 [display]
 
 window/stretch/mode="canvas_items"
