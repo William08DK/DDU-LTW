@@ -1,5 +1,6 @@
 [gd_scene format=4 uid="uid://bnyx3pvgo3t8"]
 
+[ext_resource type="Script" uid="uid://b3s532wbi3i7q" path="res://Scrips/level_1.gd" id="1_2ceuy"]
 [ext_resource type="Script" uid="uid://e1fx6see8ryp" path="res://Scrips/game_manager.gd" id="1_3rcer"]
 [ext_resource type="FontFile" uid="uid://42k0jpdfejyn" path="res://Assets/brackeys_platformer_assets/fonts/PixelOperator8-Bold.ttf" id="2_2ceuy"]
 [ext_resource type="Texture2D" uid="uid://d3krv5pae7m8i" path="res://Assets/brackeys_platformer_assets/sprites/world_tileset.png" id="3_246mo"]
@@ -215,7 +216,11 @@ _data = {
 &"move": SubResource("Animation_03iqk")
 }
 
+[sub_resource type="CircleShape2D" id="CircleShape2D_078ji"]
+radius = 18.027756
+
 [node name="Level1" type="Node2D" unique_id=2060081701]
+script = ExtResource("1_2ceuy")
 
 [node name="GameManager" type="Node" parent="." unique_id=422804846]
 unique_name_in_owner = true
@@ -308,3 +313,14 @@ position = Vector2(655, 65)
 
 [node name="Slime2" parent="Slime" unique_id=1363820951 instance=ExtResource("8_o65i7")]
 position = Vector2(72, -48)
+
+[node name="WinZone" type="Area2D" parent="." unique_id=1367238577]
+position = Vector2(2224, -111)
+collision_layer = 0
+collision_mask = 2
+
+[node name="WinCollisionShape" type="CollisionShape2D" parent="WinZone" unique_id=1903324274]
+position = Vector2(0, 15)
+shape = SubResource("CircleShape2D_078ji")
+
+[connection signal="body_entered" from="WinZone" to="." method="_on_win_zone_body_entered"]
