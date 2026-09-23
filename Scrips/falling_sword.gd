@@ -14,10 +14,8 @@ func _on_press_area_body_entered(body: Node2D) -> void:
 			buttonAnimationPlayer.play("Press")
 			buttonAudioStream.play()
 
-
 func _on_impact_sprite_animation_finished() -> void:
 	$ImpactSprite.queue_free()
-
 
 func _on_animation_player_animation_finished(anim_name: StringName) -> void:
 	$ImpactSprite.visible = true

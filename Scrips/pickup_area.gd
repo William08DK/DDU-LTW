@@ -13,8 +13,11 @@ func _on_body_entered(body: Node2D) -> void:
 func _on_body_exited(body: Node2D) -> void:
 	if body is CharacterBody2D: pickupable = 0
 
-func _process(delta: float) -> void:
-	if Input.is_action_just_pressed("ui_accept") and pickupable:
+func handle_pickup():
+	if Input.is_action_just_pressed("pickup") and pickupable:
 		emit_signal("pickup", pickupable)
 		pickupable = false
 		sword.visible = false
+
+func _process(delta: float) -> void:
+	handle_pickup()
