@@ -7,6 +7,8 @@ const JUMP_VELOCITY = -300.0
 var time_since_ground = 0.0
 var has_jumped = false
 
+var weapon = null
+
 func _physics_process(delta: float) -> void:
 	# Add the gravity.
 	if not is_on_floor():
@@ -27,7 +29,6 @@ func _physics_process(delta: float) -> void:
 	var direction := Input.get_axis("move_left", "move_right")
 	
 	# Play animations
-	
 	if is_on_floor():
 		if direction == 0:
 			$AnimatedSprite2D.play("idle")
@@ -36,8 +37,6 @@ func _physics_process(delta: float) -> void:
 	else:
 		$AnimatedSprite2D.play("jump")
 	
-
-	
 	if direction:
 		$AnimatedSprite2D.flip_h = true if direction < 0 else false
 		velocity.x = direction * SPEED
@@ -45,3 +44,8 @@ func _physics_process(delta: float) -> void:
 		velocity.x = move_toward(velocity.x, 0, SPEED)
 
 	move_and_slide()
+
+
+func _on_pickup_area_pickup(id) -> void:
+	weapon = id
+	$SwordPickup.play()
