@@ -7,7 +7,7 @@ const JUMP_VELOCITY: float = -300.0
 var time_since_ground: float = 0.0
 var has_jumped: bool = false
 
-var weapon: String = "null"
+var weapon: int = 0
 
 var current_state: String = "idle"
 
@@ -57,7 +57,7 @@ func update_sprite() -> void:
 	
 	$AnimatedSprite2D.play(current_state)
 
-func handle_gravity(delta) -> void:
+func handle_gravity(delta: float) -> void:
 	if not is_on_floor():
 		velocity += get_gravity() * delta
 
@@ -73,7 +73,7 @@ func handle_jump() -> void:
 	if Input.is_action_pressed("jump") and is_on_floor():
 		velocity.y = JUMP_VELOCITY
 
-func handle_movement(delta) -> void:
+func handle_movement(delta: float) -> void:
 	handle_gravity(delta)
 	handle_horizontal_movement()
 	handle_jump()
@@ -85,6 +85,6 @@ func _physics_process(delta: float) -> void:
 	update_sprite()
 	handle_movement(delta)
 
-func _on_pickup_area_pickup(id) -> void:
+func _on_pickup_area_pickup(id: int) -> void:
 	weapon = id
 	$SwordPickup.play()

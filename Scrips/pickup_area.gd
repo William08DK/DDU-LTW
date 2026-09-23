@@ -16,7 +16,7 @@ func _on_body_exited(body: Node2D) -> void:
 func handle_pickup():
 	if Input.is_action_just_pressed("pickup") and pickupable:
 		emit_signal("pickup", pickupable)
-		pickupable = false
+		pickupable = 0
 		sword.visible = false
 
 func _process(delta: float) -> void:
