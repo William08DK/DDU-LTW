@@ -178,6 +178,9 @@ sources/0 = SubResource("TileSetAtlasSource_4jv7b")
 
 [sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_83t3l"]
 
+[sub_resource type="CircleShape2D" id="CircleShape2D_078ji"]
+radius = 18.027756
+
 [sub_resource type="Animation" id="Animation_4jv7b"]
 length = 0.001
 tracks/0/type = "value"
@@ -215,9 +218,6 @@ _data = {
 &"RESET": SubResource("Animation_4jv7b"),
 &"move": SubResource("Animation_03iqk")
 }
-
-[sub_resource type="CircleShape2D" id="CircleShape2D_078ji"]
-radius = 18.027756
 
 [node name="Level1" type="Node2D" unique_id=2060081701]
 script = ExtResource("1_2ceuy")
@@ -268,6 +268,15 @@ position = Vector2(77, 153)
 [node name="CollisionShape2D" type="CollisionShape2D" parent="KillZone" unique_id=686072396]
 shape = SubResource("WorldBoundaryShape2D_83t3l")
 
+[node name="WinZone" type="Area2D" parent="." unique_id=1367238577]
+position = Vector2(2224, -111)
+collision_layer = 0
+collision_mask = 2
+
+[node name="WinCollisionShape" type="CollisionShape2D" parent="WinZone" unique_id=1903324274]
+position = Vector2(0, 15)
+shape = SubResource("CircleShape2D_078ji")
+
 [node name="Coins" type="Node" parent="." unique_id=428574260]
 
 [node name="Coin" parent="Coins" unique_id=1470152606 instance=ExtResource("6_a6c3k")]
@@ -313,14 +322,5 @@ position = Vector2(655, 65)
 
 [node name="Slime2" parent="Slime" unique_id=1363820951 instance=ExtResource("8_o65i7")]
 position = Vector2(72, -48)
-
-[node name="WinZone" type="Area2D" parent="." unique_id=1367238577]
-position = Vector2(2224, -111)
-collision_layer = 0
-collision_mask = 2
-
-[node name="WinCollisionShape" type="CollisionShape2D" parent="WinZone" unique_id=1903324274]
-position = Vector2(0, 15)
-shape = SubResource("CircleShape2D_078ji")
 
 [connection signal="body_entered" from="WinZone" to="." method="_on_win_zone_body_entered"]
