@@ -2,7 +2,7 @@
 
 [ext_resource type="Texture2D" uid="uid://bsek4rac64x15" path="res://Assets/brackeys_platformer_assets/sprites/knight.png" id="1_kelma"]
 [ext_resource type="Script" uid="uid://bxjjj3u3hqeh7" path="res://Scrips/player.gd" id="1_y8w33"]
-[ext_resource type="Script" uid="uid://bca8kbn4dvocw" path="res://Scene/wind_detector.gd" id="3_xa75v"]
+[ext_resource type="Script" uid="uid://bca8kbn4dvocw" path="res://Scrips/wind_detector.gd" id="3_xa75v"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_uktg4"]
 atlas = ExtResource("1_kelma")
@@ -260,6 +260,6 @@ script = ExtResource("3_xa75v")
 position = Vector2(0, -5)
 shape = SubResource("CircleShape2D_y8w33")
 
-[connection signal="body_shape_entered" from="WindDetector" to="WindDetector" method="_on_body_shape_entered"]
-[connection signal="body_shape_exited" from="WindDetector" to="WindDetector" method="_on_body_shape_exited"]
+[connection signal="body_entered" from="WindDetector" to="WindDetector" method="_on_body_entered"]
+[connection signal="body_exited" from="WindDetector" to="WindDetector" method="_on_body_exited"]
 [connection signal="set_wind" from="WindDetector" to="." method="_on_wind_detector_set_wind"]
