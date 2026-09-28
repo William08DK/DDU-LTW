@@ -4,6 +4,8 @@ extends CharacterBody2D
 const SPEED: float = 130.0
 const JUMP_VELOCITY: float = -300.0
 
+var gravity_multiplier: int = 1
+
 var coyote_timeout: float = 0.0
 var has_jumped: bool = false
 
@@ -58,9 +60,9 @@ func update_sprite() -> void:
 	$AnimatedSprite2D.play(current_state)
 
 func handle_gravity(delta: float) -> void:
-	if not is_on_floor():
+	if not is_on_floor() or gravity_multiplier != 1:
 		coyote_timeout = max(coyote_timeout - delta, 0.0)
-		velocity += get_gravity() * delta
+		velocity += get_gravity() * delta * gravity_multiplier
 	else:
 		coyote_timeout = 0.1
 
@@ -92,3 +94,7 @@ func _physics_process(delta: float) -> void:
 func _on_pickup_area_pickup(id: int) -> void:
 	weapon = id
 	$SwordPickup.play()
+
+func _on_wind_detector_set_wind(value: bool) -> void:
+	gravity_multiplier = -1 if value else 1
+	print(gravity_multiplier)

@@ -2,6 +2,7 @@
 
 [ext_resource type="Texture2D" uid="uid://bsek4rac64x15" path="res://Assets/brackeys_platformer_assets/sprites/knight.png" id="1_kelma"]
 [ext_resource type="Script" uid="uid://bxjjj3u3hqeh7" path="res://Scrips/player.gd" id="1_y8w33"]
+[ext_resource type="Script" uid="uid://bca8kbn4dvocw" path="res://Scene/wind_detector.gd" id="3_xa75v"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_uktg4"]
 atlas = ExtResource("1_kelma")
@@ -232,6 +233,9 @@ animations = [{
 [sub_resource type="CircleShape2D" id="CircleShape2D_83t3l"]
 radius = 5.0
 
+[sub_resource type="CircleShape2D" id="CircleShape2D_y8w33"]
+radius = 5.0
+
 [node name="Player" type="CharacterBody2D" unique_id=1745806591]
 z_index = 5
 collision_layer = 2
@@ -246,3 +250,16 @@ autoplay = "idle"
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=16955499]
 position = Vector2(0, -5)
 shape = SubResource("CircleShape2D_83t3l")
+
+[node name="WindDetector" type="Area2D" parent="." unique_id=65496300]
+collision_layer = 0
+collision_mask = 8
+script = ExtResource("3_xa75v")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="WindDetector" unique_id=360126629]
+position = Vector2(0, -5)
+shape = SubResource("CircleShape2D_y8w33")
+
+[connection signal="body_shape_entered" from="WindDetector" to="WindDetector" method="_on_body_shape_entered"]
+[connection signal="body_shape_exited" from="WindDetector" to="WindDetector" method="_on_body_shape_exited"]
+[connection signal="set_wind" from="WindDetector" to="." method="_on_wind_detector_set_wind"]
