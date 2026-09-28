@@ -77,7 +77,7 @@ func handle_horizontal_movement() -> void:
 	if direction:
 		velocity.x = direction * SPEED
 	else:
-		if gravity_multiplier == 1: velocity.x = move_toward(velocity.x, 0, SPEED)
+		if gravity_multiplier == 1 or gravity_rotation == 0: velocity.x = move_toward(velocity.x, 0, SPEED)
 
 func handle_jump() -> void:
 	if Input.is_action_pressed("jump") and coyote_timeout > 0.0:
