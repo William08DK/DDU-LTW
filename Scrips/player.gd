@@ -4,7 +4,7 @@ extends CharacterBody2D
 const SPEED: float = 130.0
 const JUMP_VELOCITY: float = -300.0
 
-var time_since_ground: float = 0.0
+var coyote_timeout: float = 0.0
 var has_jumped: bool = false
 
 var weapon: int = 0
@@ -59,7 +59,10 @@ func update_sprite() -> void:
 
 func handle_gravity(delta: float) -> void:
 	if not is_on_floor():
+		coyote_timeout = max(coyote_timeout - delta, 0.0)
 		velocity += get_gravity() * delta
+	else:
+		coyote_timeout = 0.1
 
 func handle_horizontal_movement() -> void:
 	var direction := Input.get_axis("move_left", "move_right")
@@ -70,7 +73,8 @@ func handle_horizontal_movement() -> void:
 		velocity.x = move_toward(velocity.x, 0, SPEED)
 
 func handle_jump() -> void:
-	if Input.is_action_pressed("jump") and is_on_floor():
+	if Input.is_action_pressed("jump") and coyote_timeout > 0.0:
+		coyote_timeout = 0.0
 		velocity.y = JUMP_VELOCITY
 
 func handle_movement(delta: float) -> void:
