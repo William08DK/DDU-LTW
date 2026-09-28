@@ -192,7 +192,7 @@ tracks/0/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [1.5707964]
+"values": [0.0]
 }
 
 [sub_resource type="Animation" id="Animation_71r3i"]
@@ -215,6 +215,11 @@ _data = {
 &"RESET": SubResource("Animation_nwjwq"),
 &"open": SubResource("Animation_71r3i")
 }
+
+[sub_resource type="ViewportTexture" id="ViewportTexture_078ji"]
+viewport_path = NodePath("Player/SubViewport")
+
+[sub_resource type="BoxMesh" id="BoxMesh_078ji"]
 
 [sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_st5wq"]
 
@@ -308,7 +313,6 @@ tile_set = SubResource("TileSet_g67xk")
 
 [node name="Lem" type="StaticBody2D" parent="TileMapLayer" unique_id=364505113]
 position = Vector2(-136, -72)
-rotation = 1.5707964
 
 [node name="LemSprite" type="Sprite2D" parent="TileMapLayer/Lem" unique_id=95311621]
 position = Vector2(63, -1.9073486e-06)
@@ -320,17 +324,44 @@ shape = SubResource("RectangleShape2D_078ji")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="TileMapLayer/Lem" unique_id=778429243]
 libraries/ = SubResource("AnimationLibrary_nwjwq")
-autoplay = &"open"
 
-[node name="Player" parent="." unique_id=1745806591 instance=ExtResource("4_nwjwq")]
+[node name="Player" parent="." unique_id=1745806591 node_paths=PackedStringArray("camera_3d") instance=ExtResource("4_nwjwq")]
 position = Vector2(48, -86)
+camera_3d = NodePath("SubViewport/Node3D/Camera3D")
 
 [node name="Camera2D" type="Camera2D" parent="Player" unique_id=1429104611]
 position = Vector2(0, -5)
-zoom = Vector2(4, 4)
+zoom = Vector2(6, 6)
 limit_bottom = 200
-position_smoothing_enabled = true
 position_smoothing_speed = 10.0
+
+[node name="3D" type="Sprite2D" parent="Player/Camera2D" unique_id=690486321]
+z_index = -50
+position = Vector2(1.1444092e-05, 7.6293945e-06)
+scale = Vector2(0.16666666, 0.16666667)
+texture = SubResource("ViewportTexture_078ji")
+
+[node name="SubViewport" type="SubViewport" parent="Player" unique_id=1898605851]
+transparent_bg = true
+size = Vector2i(1920, 1080)
+
+[node name="Node3D" type="Node3D" parent="Player/SubViewport" unique_id=235601561]
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="Player/SubViewport/Node3D" unique_id=855400102]
+transform = Transform3D(0.75778985, 0.4750109, -0.4473468, -0.40905303, 0.8799799, 0.24147667, 0.50836027, 0, 0.8611445, 0, 0, 0)
+
+[node name="DirectionalLight3D2" type="DirectionalLight3D" parent="Player/SubViewport/Node3D" unique_id=931330601]
+transform = Transform3D(0.87780595, 0.45465165, 0.15082735, 0.4731267, -0.87213737, -0.12461057, 0.07488781, 0.18074435, -0.9806751, 0, 0, 0)
+light_energy = 0.2
+
+[node name="Camera3D" type="Camera3D" parent="Player/SubViewport/Node3D" unique_id=1298428282]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 8)
+projection = 1
+size = 10.0
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Player/SubViewport/Node3D" unique_id=288334464]
+transform = Transform3D(0.99058235, -0.29782432, 2.9257202, 0.933782, 1.3077383, -1.2307901, -0.80799603, 1.146197, 2.164464, 0, 0, 0)
+mesh = SubResource("BoxMesh_078ji")
 
 [node name="KillZone" parent="." unique_id=992544669 instance=ExtResource("5_67jix")]
 position = Vector2(77, 153)

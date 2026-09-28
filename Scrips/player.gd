@@ -4,6 +4,8 @@ extends CharacterBody2D
 const SPEED: float = 130.0
 const JUMP_VELOCITY: float = -300.0
 
+@export var camera_3d: Camera3D
+
 var gravity_multiplier: float = 1.0
 var gravity_rotation: float = 0.0
 
@@ -84,6 +86,10 @@ func handle_jump() -> void:
 		coyote_timeout = 0.0
 		velocity.y = JUMP_VELOCITY
 
+func update_3d_camera():
+	camera_3d.position.y = -(global_position.y / 20 + 10)
+	$SubViewport/Node3D/MeshInstance3D.global_rotation.y = -(global_position.x / 1000) * (2 * PI)
+
 func handle_movement(delta: float) -> void:
 	handle_horizontal_movement()
 	handle_gravity(delta)
@@ -94,6 +100,7 @@ func _physics_process(delta: float) -> void:
 	update_state()
 	update_attack(delta)
 	update_sprite()
+	update_3d_camera()
 	handle_movement(delta)
 
 func _on_pickup_area_pickup(id: int) -> void:
