@@ -1,7 +1,7 @@
 extends CharacterBody2D
 
 const SPEED: float = 130.0
-const JUMP_VELOCITY: float = -300.0
+const JUMP_VELOCITY: float = -320.0
 
 @export var camera_3d: Node3D
 
@@ -89,8 +89,8 @@ func update_3d_camera():
 	if not RotatingCubeCheck.rotating_cube: return
 	if not camera_3d: return
 	
-	camera_3d.position.y = -(global_position.y / 20 + 10)
-	camera_3d.global_rotation.y = (global_position.x / 1000) * (2 * PI)
+	camera_3d.position.y = max(-(global_position.y / 20 + 10), -12)
+	camera_3d.global_rotation.y = ((global_position.x - 144) / 1872) * (2 * PI)
 
 func handle_movement(delta: float) -> void:
 	handle_horizontal_movement()

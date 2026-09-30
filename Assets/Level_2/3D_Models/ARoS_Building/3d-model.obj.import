@@ -1,0 +1,25 @@
+[remap]
+
+importer="wavefront_obj"
+importer_version=1
+type="Mesh"
+uid="uid://cb1ww4xa3ls5h"
+path="res://.godot/imported/3d-model.obj-435d2a0d94f7377ce0a63babb0366f13.mesh"
+
+[deps]
+
+files=["res://.godot/imported/3d-model.obj-435d2a0d94f7377ce0a63babb0366f13.mesh"]
+
+source_file="res://Assets/Level_2/3D_Models/ARoS_Building/3d-model.obj"
+dest_files=["res://.godot/imported/3d-model.obj-435d2a0d94f7377ce0a63babb0366f13.mesh", "res://.godot/imported/3d-model.obj-435d2a0d94f7377ce0a63babb0366f13.mesh"]
+
+[params]
+
+generate_tangents=true
+generate_lods=true
+generate_shadow_mesh=true
+generate_lightmap_uv2=false
+generate_lightmap_uv2_texel_size=0.2
+scale_mesh=Vector3(1, 1, 1)
+offset_mesh=Vector3(0, 0, 0)
+force_disable_mesh_compression=false
