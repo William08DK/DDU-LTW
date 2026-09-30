@@ -222,7 +222,7 @@ _data = {
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_67jix"]
 shader = ExtResource("8_67jix")
-shader_parameter/amount = 192
+shader_parameter/amount = 96
 
 [sub_resource type="ViewportTexture" id="ViewportTexture_078ji"]
 viewport_path = NodePath("Player/SubViewport")
@@ -392,7 +392,7 @@ mesh = ExtResource("9_f3pwq")
 
 [node name="Camera3D" type="Camera3D" parent="Player/SubViewport/Node3D/CameraPivot" unique_id=1298428282]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3, 40)
-fov = 40.0
+fov = 45.0
 size = 10.0
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="Player/SubViewport/Node3D" unique_id=268076580]
