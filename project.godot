@@ -22,6 +22,7 @@ buses/default_bus_layout="uid://c0vnr7xervot4"
 [autoload]
 
 Music="*uid://brjp7dli5qdfr"
+RotatingCubeCheck="*uid://dy0ht8ysthnug"
 
 [display]
 

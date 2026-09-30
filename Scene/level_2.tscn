@@ -1,6 +1,7 @@
 [gd_scene format=4 uid="uid://b3sn2m3idcpsg"]
 
 [ext_resource type="Script" uid="uid://e1fx6see8ryp" path="res://Scrips/game_manager.gd" id="1_2thg8"]
+[ext_resource type="Script" uid="uid://b7x2wsoakqmxt" path="res://Scrips/level_2.gd" id="1_nwjwq"]
 [ext_resource type="FontFile" uid="uid://42k0jpdfejyn" path="res://Assets/brackeys_platformer_assets/fonts/PixelOperator8-Bold.ttf" id="2_jte5b"]
 [ext_resource type="Texture2D" uid="uid://d3krv5pae7m8i" path="res://Assets/brackeys_platformer_assets/sprites/world_tileset.png" id="3_71r3i"]
 [ext_resource type="PackedScene" uid="uid://d17etwedg1lqp" path="res://Scene/wind.tscn" id="4_jte5b"]
@@ -9,6 +10,7 @@
 [ext_resource type="Texture2D" uid="uid://cnvmxde11cfda" path="res://Assets/Level_2/sprits/Sprite-Lem.png" id="5_71r3i"]
 [ext_resource type="PackedScene" uid="uid://78pi2pq1ujyq" path="res://Scene/coin.tscn" id="6_f3pwq"]
 [ext_resource type="PackedScene" uid="uid://fnfid4svhnhr" path="res://Scene/platform.tscn" id="7_ccfm3"]
+[ext_resource type="Shader" uid="uid://brl4feon4rmqf" path="res://Scene/cube_shader.gdshader" id="8_67jix"]
 [ext_resource type="PackedScene" uid="uid://b62o7npb675bv" path="res://Scene/slime.tscn" id="8_nquh6"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_vg3ep"]
@@ -216,6 +218,10 @@ _data = {
 &"open": SubResource("Animation_71r3i")
 }
 
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_67jix"]
+shader = ExtResource("8_67jix")
+shader_parameter/amount = 128
+
 [sub_resource type="ViewportTexture" id="ViewportTexture_078ji"]
 viewport_path = NodePath("Player/SubViewport")
 
@@ -261,6 +267,7 @@ _data = {
 }
 
 [node name="Level2" type="Node2D" unique_id=211591475]
+script = ExtResource("1_nwjwq")
 
 [node name="GameManager" type="Node" parent="." unique_id=1579133162]
 unique_name_in_owner = true
@@ -337,6 +344,7 @@ position_smoothing_speed = 10.0
 
 [node name="3D" type="Sprite2D" parent="Player/Camera2D" unique_id=690486321]
 z_index = -50
+material = SubResource("ShaderMaterial_67jix")
 position = Vector2(1.1444092e-05, 7.6293945e-06)
 scale = Vector2(0.16666666, 0.16666667)
 texture = SubResource("ViewportTexture_078ji")

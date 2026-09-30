@@ -1,6 +1,5 @@
 extends CharacterBody2D
 
-
 const SPEED: float = 130.0
 const JUMP_VELOCITY: float = -300.0
 
@@ -87,6 +86,9 @@ func handle_jump() -> void:
 		velocity.y = JUMP_VELOCITY
 
 func update_3d_camera():
+	if not RotatingCubeCheck.rotating_cube: return
+	if not camera_3d: return
+	
 	camera_3d.position.y = -(global_position.y / 20 + 10)
 	$SubViewport/Node3D/MeshInstance3D.global_rotation.y = -(global_position.x / 1000) * (2 * PI)
 
