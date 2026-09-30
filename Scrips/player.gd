@@ -3,7 +3,7 @@ extends CharacterBody2D
 const SPEED: float = 130.0
 const JUMP_VELOCITY: float = -300.0
 
-@export var camera_3d: Camera3D
+@export var camera_3d: Node3D
 
 var gravity_multiplier: float = 1.0
 var gravity_rotation: float = 0.0
@@ -90,7 +90,7 @@ func update_3d_camera():
 	if not camera_3d: return
 	
 	camera_3d.position.y = -(global_position.y / 20 + 10)
-	$SubViewport/Node3D/MeshInstance3D.global_rotation.y = -(global_position.x / 1000) * (2 * PI)
+	camera_3d.global_rotation.y = (global_position.x / 1000) * (2 * PI)
 
 func handle_movement(delta: float) -> void:
 	handle_horizontal_movement()
