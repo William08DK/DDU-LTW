@@ -1,0 +1,93 @@
+[gd_scene format=3 uid="uid://boxmsy5bcua17"]
+
+[ext_resource type="Script" uid="uid://bfvsw6gym0a2t" path="res://Scrips/boss.gd" id="1_bv8a7"]
+[ext_resource type="Texture2D" uid="uid://dxm3xko5h42gk" path="res://Assets/brackeys_platformer_assets/sprites/slime_purple.png" id="1_mi78u"]
+[ext_resource type="PackedScene" uid="uid://bjnbqwe0m8a83" path="res://Scene/kill_zone.tscn" id="3_46auw"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_bv8a7"]
+atlas = ExtResource("1_mi78u")
+region = Rect2(0, 24, 24, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_46auw"]
+atlas = ExtResource("1_mi78u")
+region = Rect2(24, 24, 24, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_lcnog"]
+atlas = ExtResource("1_mi78u")
+region = Rect2(48, 24, 24, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_xiart"]
+atlas = ExtResource("1_mi78u")
+region = Rect2(72, 24, 24, 24)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_078ji"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_bv8a7")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_46auw")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_lcnog")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_xiart")
+}],
+"loop": 1,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ylbdr"]
+size = Vector2(70, 20)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_078ji"]
+size = Vector2(14, 4.000001)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_mi78u"]
+size = Vector2(12.000001, 1.0000005)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_bv8a7"]
+size = Vector2(10.000002, 10.000002)
+
+[node name="Boss" type="CharacterBody2D" unique_id=1414193232]
+collision_layer = 0
+script = ExtResource("1_bv8a7")
+metadata/pos_x = 1200.0
+metadata/pos_y = -200.0
+
+[node name="BossSprite" type="AnimatedSprite2D" parent="." unique_id=686701276]
+position = Vector2(0, -59.999996)
+scale = Vector2(5, 5)
+sprite_frames = SubResource("SpriteFrames_078ji")
+autoplay = "default"
+frame_progress = 0.9433675
+
+[node name="Collision" type="CollisionShape2D" parent="." unique_id=979326628]
+position = Vector2(0, -10)
+shape = SubResource("RectangleShape2D_ylbdr")
+
+[node name="KillZone2" parent="." unique_id=992544669 instance=ExtResource("3_46auw")]
+metadata/damage = 2
+
+[node name="KillCollision" type="CollisionShape2D" parent="KillZone2" unique_id=517973545]
+position = Vector2(-1.9073484e-06, -10.000004)
+scale = Vector2(4.999999, 4.999999)
+shape = SubResource("RectangleShape2D_078ji")
+
+[node name="KillCollision2" type="CollisionShape2D" parent="KillZone2" unique_id=2008375587]
+position = Vector2(2.3841853e-06, -22.5)
+scale = Vector2(4.999999, 4.999999)
+shape = SubResource("RectangleShape2D_mi78u")
+
+[node name="KillCollision3" type="CollisionShape2D" parent="KillZone2" unique_id=966078158]
+position = Vector2(0, -50)
+scale = Vector2(4.999999, 4.999999)
+shape = SubResource("RectangleShape2D_bv8a7")
+
+[node name="Timer" type="Timer" parent="." unique_id=409054762]
+wait_time = 2.0
+
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

@@ -2,27 +2,57 @@
 
 [ext_resource type="Script" uid="uid://brn4tubtou4lr" path="res://Scrips/button_on_wall_falling_sword.gd" id="1_x2gbl"]
 [ext_resource type="Script" uid="uid://f388w2v84rnt" path="res://Scrips/falling_sword.gd" id="2_2e8dx"]
+[ext_resource type="Texture2D" uid="uid://cq6gg5kwq3dcf" path="res://Assets/Level_2/sprits/Sprite-Button2.png" id="2_xtbwi"]
 [ext_resource type="AudioStream" uid="uid://jf5hvk4bieay" path="res://Assets/Custom/click.mp3" id="3_qoltv"]
+[ext_resource type="AudioStream" uid="uid://ro7vmmcnp2i0" path="res://Assets/Custom/pickup.mp3" id="3_xtbwi"]
 [ext_resource type="Texture2D" uid="uid://dslv3gy6gkk5v" path="res://Assets/Custom/spritesheet.png" id="4_y637p"]
 [ext_resource type="AudioStream" uid="uid://b6j3v8id7uq7l" path="res://Assets/Custom/swoosh.mp3" id="5_64iq5"]
 [ext_resource type="Texture2D" uid="uid://bfivw3kthngaq" path="res://Assets/Custom/weapon.png" id="5_y637p"]
 [ext_resource type="Script" uid="uid://cxl2hgae0akip" path="res://Scrips/pickup_area.gd" id="6_byjho"]
 
+[sub_resource type="AtlasTexture" id="AtlasTexture_2iyta"]
+atlas = ExtResource("2_xtbwi")
+region = Rect2(0, 0, 25, 14)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_5ibnx"]
+atlas = ExtResource("2_xtbwi")
+region = Rect2(0, 0, 25, 14)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_80co7"]
+atlas = ExtResource("2_xtbwi")
+region = Rect2(25, 0, 25, 14)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_38sre"]
+atlas = ExtResource("2_xtbwi")
+region = Rect2(50, 0, 25, 14)
+
 [sub_resource type="SpriteFrames" id="SpriteFrames_ylbdr"]
 animations = [{
-"frames": [],
-"loop": 1,
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_2iyta")
+}],
+"loop": 0,
 "name": &"default",
 "speed": 5.0
 }, {
-"frames": [],
-"loop": 1,
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_5ibnx")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_80co7")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_38sre")
+}],
+"loop": 0,
 "name": &"press",
-"speed": 5.0
+"speed": 15.0
 }]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_ylbdr"]
-radius = 4.472136
+radius = 9.0
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_2bdlv"]
 atlas = ExtResource("4_y637p")
@@ -140,7 +170,7 @@ length = 2.0
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("FallingSword:position")
+tracks/0/path = NodePath("FallingSword:global_position")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -148,18 +178,6 @@ tracks/0/keys = {
 "transitions": PackedFloat32Array(1, 1),
 "update": 0,
 "values": [Vector2(0, 0), Vector2(0, 0)]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("FallingSword:visible")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0, 1.8),
-"transitions": PackedFloat32Array(1, 1),
-"update": 1,
-"values": [false, true]
 }
 
 [sub_resource type="Animation" id="Animation_x2gbl"]
@@ -178,12 +196,17 @@ metadata/sword_start_position = Vector2(0, 0)
 metadata/sword_end_position = Vector2(0, 0)
 metadata/button_rotation = 0.0
 metadata/sword_rotation = 0.0
+metadata/id = 0
 
 [node name="Button" type="Node2D" parent="." unique_id=1407321839]
 
 [node name="ButtonSprite" type="AnimatedSprite2D" parent="Button" unique_id=1226093767]
+scale = Vector2(0.59037423, 0.59037423)
 sprite_frames = SubResource("SpriteFrames_ylbdr")
 animation = &"press"
+autoplay = "default"
+frame = 2
+frame_progress = 1.0
 
 [node name="PressArea" type="Area2D" parent="Button/ButtonSprite" unique_id=613551614]
 position = Vector2(0, 7)
@@ -191,6 +214,7 @@ collision_layer = 0
 collision_mask = 2
 
 [node name="PressCollision" type="CollisionShape2D" parent="Button/ButtonSprite/PressArea" unique_id=379777209]
+position = Vector2(0, -7)
 shape = SubResource("CircleShape2D_ylbdr")
 
 [node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="Button" unique_id=382531291]
@@ -219,15 +243,18 @@ frame_progress = 0.16403118
 stream = ExtResource("5_64iq5")
 pitch_scale = 0.95
 
-[node name="PickupArea" type="Area2D" parent="FallingSword/SwordSprite" unique_id=1712974834 node_paths=PackedStringArray("sword")]
+[node name="PickupArea" type="Area2D" parent="FallingSword/SwordSprite" unique_id=1712974834 node_paths=PackedStringArray("sword", "button_sword_root")]
 collision_layer = 0
 collision_mask = 2
 script = ExtResource("6_byjho")
 sword = NodePath("../..")
-metadata/id = 5
+button_sword_root = NodePath("../../..")
 
 [node name="PickupCollision" type="CollisionShape2D" parent="FallingSword/SwordSprite/PickupArea" unique_id=1117866024]
 shape = SubResource("CircleShape2D_078ji")
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="FallingSword/SwordSprite/PickupArea" unique_id=706629797]
+stream = ExtResource("3_xtbwi")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="FallingSword" unique_id=823817486]
 root_node = NodePath("../..")
@@ -237,4 +264,5 @@ libraries/ = SubResource("AnimationLibrary_lbjco")
 [connection signal="animation_finished" from="FallingSword/ImpactSprite" to="FallingSword" method="_on_impact_sprite_animation_finished"]
 [connection signal="body_entered" from="FallingSword/SwordSprite/PickupArea" to="FallingSword/SwordSprite/PickupArea" method="_on_body_entered"]
 [connection signal="body_exited" from="FallingSword/SwordSprite/PickupArea" to="FallingSword/SwordSprite/PickupArea" method="_on_body_exited"]
+[connection signal="pickup" from="FallingSword/SwordSprite/PickupArea" to="." method="_on_pickup_area_pickup"]
 [connection signal="animation_finished" from="FallingSword/AnimationPlayer" to="FallingSword" method="_on_animation_player_animation_finished"]

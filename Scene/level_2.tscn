@@ -15,7 +15,8 @@
 [ext_resource type="PackedScene" uid="uid://b62o7npb675bv" path="res://Scene/slime.tscn" id="8_nquh6"]
 [ext_resource type="ArrayMesh" uid="uid://bwydxvpgino8x" path="res://Assets/Level_2/3D_Models/Rainbow/ARoS_Rainbow.obj" id="9_f3pwq"]
 [ext_resource type="ArrayMesh" uid="uid://cb1ww4xa3ls5h" path="res://Assets/Level_2/3D_Models/ARoS_Building/3d-model.obj" id="10_ccfm3"]
-[ext_resource type="Texture2D" uid="uid://c82l6ihrenfru" path="res://Assets/Level_2/environment.blur.jpg" id="10_nquh6"]
+[ext_resource type="Texture2D" uid="uid://c82l6ihrenfru" path="res://Assets/Level_2/environment.blur.jpg" id="12_g67xk"]
+[ext_resource type="PackedScene" uid="uid://4k462ivqiy2l" path="res://Scene/lever.tscn" id="16_vg3ep"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_vg3ep"]
 texture = ExtResource("3_71r3i")
@@ -227,10 +228,13 @@ _data = {
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_67jix"]
 shader = ExtResource("8_67jix")
-shader_parameter/amount = 96
+shader_parameter/amount = 128
 
 [sub_resource type="ViewportTexture" id="ViewportTexture_078ji"]
 viewport_path = NodePath("Player/SubViewport")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_nquh6"]
+albedo_color = Color(0.28842676, 0.20055085, 0.15399384, 1)
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ccfm3"]
 albedo_color = Color(0.16460797, 0.21090692, 0.18672353, 1)
@@ -242,7 +246,7 @@ bottom_radius = 0.3
 height = 0.001
 
 [sub_resource type="PanoramaSkyMaterial" id="PanoramaSkyMaterial_nquh6"]
-panorama = ExtResource("10_nquh6")
+panorama = ExtResource("12_g67xk")
 
 [sub_resource type="Sky" id="Sky_ccfm3"]
 sky_material = SubResource("PanoramaSkyMaterial_nquh6")
@@ -252,6 +256,7 @@ background_mode = 2
 background_color = Color(0.5921569, 0, 0, 1)
 sky = SubResource("Sky_ccfm3")
 sky_custom_fov = 90.0
+adjustment_enabled = true
 
 [sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_st5wq"]
 
@@ -292,9 +297,6 @@ _data = {
 &"Up_and_Down": SubResource("Animation_jte5b")
 }
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_nquh6"]
-albedo_color = Color(0.28842676, 0.20055085, 0.15399384, 1)
-
 [node name="Level2" type="Node2D" unique_id=211591475]
 script = ExtResource("1_nwjwq")
 
@@ -320,12 +322,13 @@ metadata/_edit_use_anchors_ = true
 tile_set = SubResource("TileSet_g67xk")
 
 [node name="ButtonOnWallFallingSword" parent="TileMapLayer" unique_id=348454976 instance=ExtResource("5_vg3ep")]
-position = Vector2(380, -40)
+position = Vector2(372, -40)
 rotation = 1.5707964
-metadata/button_position = Vector2(368, -40)
+metadata/button_position = Vector2(364, -40)
 metadata/sword_start_position = Vector2(392, -336)
 metadata/sword_end_position = Vector2(392, 0)
 metadata/button_rotation = -90.0
+metadata/id = 1
 
 [node name="Background" type="TileMapLayer" parent="TileMapLayer" unique_id=23556549]
 use_parent_material = true
@@ -374,29 +377,28 @@ shape = SubResource("RectangleShape2D_078ji")
 [node name="AnimationPlayer" type="AnimationPlayer" parent="TileMapLayer/Lem" unique_id=778429243]
 libraries/ = SubResource("AnimationLibrary_nwjwq")
 
-[node name="Lem" type="StaticBody2D" parent="TileMapLayer/Lem" unique_id=1940054286]
-position = Vector2(1872, 0)
+[node name="Lem2" type="StaticBody2D" parent="TileMapLayer" unique_id=1940054286]
+position = Vector2(1736, -72)
 
-[node name="LemSprite" type="Sprite2D" parent="TileMapLayer/Lem/Lem" unique_id=2126939053]
+[node name="LemSprite" type="Sprite2D" parent="TileMapLayer/Lem2" unique_id=2126939053]
 position = Vector2(63, -1.9073486e-06)
 texture = ExtResource("5_71r3i")
 
-[node name="LemCollision" type="CollisionShape2D" parent="TileMapLayer/Lem/Lem" unique_id=216309343]
+[node name="LemCollision" type="CollisionShape2D" parent="TileMapLayer/Lem2" unique_id=216309343]
 position = Vector2(63, -1.9073486e-06)
 shape = SubResource("RectangleShape2D_078ji")
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="TileMapLayer/Lem/Lem" unique_id=1167592714]
+[node name="AnimationPlayer" type="AnimationPlayer" parent="TileMapLayer/Lem2" unique_id=1167592714]
+root_node = NodePath("../../Lem2")
 libraries/ = SubResource("AnimationLibrary_nwjwq")
 
 [node name="Player" parent="." unique_id=1745806591 node_paths=PackedStringArray("camera_3d") instance=ExtResource("4_nwjwq")]
-position = Vector2(48, -86)
+position = Vector2(-119, -80)
 camera_3d = NodePath("SubViewport/Node3D/CameraPivot")
 
 [node name="Camera2D" type="Camera2D" parent="Player" unique_id=1429104611]
 position = Vector2(0, -5)
 zoom = Vector2(5, 5)
-limit_bottom = 200
-position_smoothing_speed = 10.0
 
 [node name="3D" type="Sprite2D" parent="Player/Camera2D" unique_id=690486321]
 z_index = -50
@@ -409,6 +411,11 @@ texture = SubResource("ViewportTexture_078ji")
 size = Vector2i(1920, 1080)
 
 [node name="Node3D" type="Node3D" parent="Player/SubViewport" unique_id=235601561]
+
+[node name="3dModel" type="MeshInstance3D" parent="Player/SubViewport/Node3D" unique_id=166346501]
+transform = Transform3D(0.96, 0, 0, 0, 0.96, 0, 0, 0, 0.96, 0, -13.7, 0)
+mesh = ExtResource("10_ccfm3")
+surface_material_override/0 = SubResource("StandardMaterial3D_nquh6")
 
 [node name="ARoSRainbow" type="MeshInstance3D" parent="Player/SubViewport/Node3D" unique_id=738283910]
 transform = Transform3D(0.3, 0, 0, 0, 0.3, 0, 0, 0, 0.3, 0, 0, 0)
@@ -451,6 +458,7 @@ environment = SubResource("Environment_078ji")
 
 [node name="KillZone" parent="." unique_id=992544669 instance=ExtResource("5_67jix")]
 position = Vector2(77, 153)
+metadata/damage = 999
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="KillZone" unique_id=1045244224]
 shape = SubResource("WorldBoundaryShape2D_st5wq")
@@ -511,7 +519,15 @@ position = Vector2(805, -81)
 [node name="Slime5" parent="Slime" unique_id=1970181576 instance=ExtResource("8_nquh6")]
 position = Vector2(840, -81)
 
-[node name="3dModel" type="MeshInstance3D" parent="." unique_id=166346501]
-transform = Transform3D(0.96, 0, 0, 0, 0.96, 0, 0, 0, 0.96, 0, -13.7, 0)
-mesh = ExtResource("10_ccfm3")
-surface_material_override/0 = SubResource("StandardMaterial3D_nquh6")
+[node name="Levers" type="Node" parent="." unique_id=881790700]
+
+[node name="Lever" parent="Levers" unique_id=1028323502 instance=ExtResource("16_vg3ep")]
+z_index = -1
+position = Vector2(1706, -120)
+
+[node name="Lever2" parent="Levers" unique_id=1380247273 instance=ExtResource("16_vg3ep")]
+z_index = -1
+position = Vector2(-166, -120)
+
+[connection signal="pickup_external" from="TileMapLayer/ButtonOnWallFallingSword" to="Player" method="_on_button_on_wall_falling_sword_pickup_external"]
+[connection signal="body_entered" from="Levers/Lever" to="." method="_on_lever_body_entered"]

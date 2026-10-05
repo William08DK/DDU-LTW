@@ -253,7 +253,7 @@ tile_map_data = PackedByteArray("AAD8//v/AAAAAAAAAAD9//v/AAAAAAAAAAAAAPv/AAAAAAA
 tile_set = SubResource("TileSet_83t3l")
 
 [node name="Player" parent="." unique_id=1745806591 instance=ExtResource("4_sq6mb")]
-position = Vector2(-54, -80)
+position = Vector2(-40, -80)
 
 [node name="Camera2D" type="Camera2D" parent="Player" unique_id=1071247305]
 position = Vector2(0, -5)
@@ -264,6 +264,7 @@ position_smoothing_speed = 10.0
 
 [node name="KillZone" parent="." unique_id=992544669 instance=ExtResource("5_q8blv")]
 position = Vector2(77, 153)
+metadata/damage = 999
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="KillZone" unique_id=686072396]
 shape = SubResource("WorldBoundaryShape2D_83t3l")
