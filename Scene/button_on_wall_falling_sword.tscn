@@ -1,6 +1,5 @@
 [gd_scene format=3 uid="uid://cr45xhq10myny"]
 
-[ext_resource type="Texture2D" uid="uid://bvxaisrs6rsb7" path="res://Assets/brackeys_platformer_assets/sprites/slime_green.png" id="1_jfyrq"]
 [ext_resource type="Script" uid="uid://brn4tubtou4lr" path="res://Scrips/button_on_wall_falling_sword.gd" id="1_x2gbl"]
 [ext_resource type="Script" uid="uid://f388w2v84rnt" path="res://Scrips/falling_sword.gd" id="2_2e8dx"]
 [ext_resource type="AudioStream" uid="uid://jf5hvk4bieay" path="res://Assets/Custom/click.mp3" id="3_qoltv"]
@@ -9,44 +8,21 @@
 [ext_resource type="Texture2D" uid="uid://bfivw3kthngaq" path="res://Assets/Custom/weapon.png" id="5_y637p"]
 [ext_resource type="Script" uid="uid://cxl2hgae0akip" path="res://Scrips/pickup_area.gd" id="6_byjho"]
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_2iyta"]
-atlas = ExtResource("1_jfyrq")
-region = Rect2(0, 0, 24, 24)
-
 [sub_resource type="SpriteFrames" id="SpriteFrames_ylbdr"]
 animations = [{
-"frames": [{
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_2iyta")
-}],
+"frames": [],
 "loop": 1,
 "name": &"default",
+"speed": 5.0
+}, {
+"frames": [],
+"loop": 1,
+"name": &"press",
 "speed": 5.0
 }]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_ylbdr"]
 radius = 4.472136
-
-[sub_resource type="Animation" id="Animation_xtbwi"]
-resource_name = "Press"
-length = 0.1
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath(".:position")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.099999994),
-"transitions": PackedFloat32Array(1, 1),
-"update": 0,
-"values": [Vector2(0, 0), Vector2(0, 0)]
-}
-
-[sub_resource type="AnimationLibrary" id="AnimationLibrary_qoltv"]
-_data = {
-&"Press": SubResource("Animation_xtbwi")
-}
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_2bdlv"]
 atlas = ExtResource("4_y637p")
@@ -207,6 +183,7 @@ metadata/sword_rotation = 0.0
 
 [node name="ButtonSprite" type="AnimatedSprite2D" parent="Button" unique_id=1226093767]
 sprite_frames = SubResource("SpriteFrames_ylbdr")
+animation = &"press"
 
 [node name="PressArea" type="Area2D" parent="Button/ButtonSprite" unique_id=613551614]
 position = Vector2(0, 7)
@@ -216,16 +193,12 @@ collision_mask = 2
 [node name="PressCollision" type="CollisionShape2D" parent="Button/ButtonSprite/PressArea" unique_id=379777209]
 shape = SubResource("CircleShape2D_ylbdr")
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="Button" unique_id=1983219578]
-libraries/ = SubResource("AnimationLibrary_qoltv")
-
 [node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="Button" unique_id=382531291]
 stream = ExtResource("3_qoltv")
 
-[node name="FallingSword" type="Node2D" parent="." unique_id=395597222 node_paths=PackedStringArray("buttonAnimationPlayer", "buttonAudioStream")]
-visible = false
+[node name="FallingSword" type="Node2D" parent="." unique_id=395597222 node_paths=PackedStringArray("buttonAnimatedSprite", "buttonAudioStream")]
 script = ExtResource("2_2e8dx")
-buttonAnimationPlayer = NodePath("../Button/AnimationPlayer")
+buttonAnimatedSprite = NodePath("../Button/ButtonSprite")
 buttonAudioStream = NodePath("../Button/AudioStreamPlayer2D")
 
 [node name="ImpactSprite" type="AnimatedSprite2D" parent="FallingSword" unique_id=345258377]

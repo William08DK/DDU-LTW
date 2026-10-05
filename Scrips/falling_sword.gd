@@ -2,7 +2,7 @@ extends Node2D
 
 var on_ground: bool = false;
 
-@export var buttonAnimationPlayer: AnimationPlayer
+@export var buttonAnimatedSprite: AnimatedSprite2D
 @export var buttonAudioStream: AudioStreamPlayer2D
 
 func _on_press_area_body_entered(body: Node2D) -> void:
@@ -11,7 +11,7 @@ func _on_press_area_body_entered(body: Node2D) -> void:
 			on_ground = true
 			$SwordSprite/AudioPlayer.play()
 			$AnimationPlayer.play("Fall")
-			buttonAnimationPlayer.play("Press")
+			buttonAnimatedSprite.play("press")
 			buttonAudioStream.play()
 
 func _on_impact_sprite_animation_finished() -> void:
