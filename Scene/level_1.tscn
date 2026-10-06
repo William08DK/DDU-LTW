@@ -235,7 +235,7 @@ offset_right = 2256.0
 offset_bottom = -76.0
 scale = Vector2(0.4, 0.4)
 theme_override_fonts/font = ExtResource("2_2ceuy")
-text = "You have collected X coins"
+text = "You have collected 0 coins"
 horizontal_alignment = 1
 autowrap_mode = 2
 

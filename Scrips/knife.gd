@@ -14,7 +14,7 @@ func _integrate_forces(state: PhysicsDirectBodyState2D) -> void:
 	linear_velocity.y = 0
 
 func _ready() -> void:
-	$AnimatedSprite2D.flip_v = flip
+	scale.x = -1 if flip else 1
 	var direction = -1 if flip else 1
 	linear_velocity.x = direction * speed
 
