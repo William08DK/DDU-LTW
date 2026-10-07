@@ -5,8 +5,6 @@ extends Node2D
 @onready var button: Node2D = $Button
 var pressed = false
 func _ready() -> void:
-	windstream2.visible = false
-	windstream3.visible = false
 	pressed = false
 	_on_press_area_body_entered
 
