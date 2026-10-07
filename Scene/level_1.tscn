@@ -296,33 +296,38 @@ position = Vector2(200, -182)
 position = Vector2(328, -230)
 
 [node name="Coin6" parent="Coins" unique_id=1400831090 instance=ExtResource("6_a6c3k")]
-position = Vector2(135, -102)
+position = Vector2(136, -102)
 
 [node name="Coin7" parent="Coins" unique_id=1236905905 instance=ExtResource("6_a6c3k")]
 position = Vector2(8, -86)
 
 [node name="Coin8" parent="Coins" unique_id=721179743 instance=ExtResource("6_a6c3k")]
-position = Vector2(1092, 58)
+position = Vector2(1096, 58)
 
 [node name="Coin9" parent="Coins" unique_id=972988839 instance=ExtResource("6_a6c3k")]
-position = Vector2(1159, -22)
+position = Vector2(1160, -22)
 
 [node name="Coin10" parent="Coins" unique_id=1032313417 instance=ExtResource("6_a6c3k")]
 position = Vector2(1527, 2)
 
 [node name="Coin11" parent="Coins" unique_id=1756060876 instance=ExtResource("6_a6c3k")]
-position = Vector2(938, -26)
+position = Vector2(936, -22)
 
 [node name="Coin12" parent="Coins" unique_id=1000773354 instance=ExtResource("6_a6c3k")]
-position = Vector2(806, -140)
+position = Vector2(808, -134)
 
 [node name="Coin13" parent="Coins" unique_id=1192025012 instance=ExtResource("6_a6c3k")]
-position = Vector2(650, -123)
+position = Vector2(648, -118)
 
 [node name="Platform4" type="Node" parent="." unique_id=214645406]
 
 [node name="Platform" parent="Platform4" unique_id=462375374 instance=ExtResource("7_y4apx")]
 position = Vector2(86, -108)
+
+[node name="Platform4" parent="Platform4" unique_id=1017764410 instance=ExtResource("7_y4apx")]
+visible = false
+position = Vector2(917, -32)
+rotation = -1.5707964
 
 [node name="Platform2" parent="Platform4" unique_id=2000999104 instance=ExtResource("7_y4apx")]
 position = Vector2(62, -155)
