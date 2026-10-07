@@ -5,6 +5,7 @@
 [node name="KillZone" type="Area2D" unique_id=992544669]
 collision_mask = 2
 script = ExtResource("1_ntygf")
+metadata/damage = 0
 
 [node name="Timer" type="Timer" parent="." unique_id=949174272]
 wait_time = 0.6

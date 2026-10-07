@@ -54,6 +54,7 @@ frame = 2
 flip_h = true
 
 [node name="KillZone" parent="." unique_id=992544669 instance=ExtResource("2_vnxak")]
+metadata/damage = 1
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="KillZone" unique_id=934644699]
 position = Vector2(0, -7)

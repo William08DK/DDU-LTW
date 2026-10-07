@@ -1,0 +1,68 @@
+[gd_scene format=3 uid="uid://4k462ivqiy2l"]
+
+[ext_resource type="Texture2D" uid="uid://4dkvjtgltlsx" path="res://Assets/Level_2/sprits/Sprite-Lever.png" id="1_o5sqf"]
+[ext_resource type="Script" uid="uid://nln0rpjcmhn2" path="res://Scrips/lever_sprite.gd" id="2_dp7mf"]
+[ext_resource type="AudioStream" uid="uid://jf5hvk4bieay" path="res://Assets/Custom/click.mp3" id="3_v3eyd"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_dp7mf"]
+atlas = ExtResource("1_o5sqf")
+region = Rect2(0, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_o5sqf"]
+atlas = ExtResource("1_o5sqf")
+region = Rect2(0, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_v3eyd"]
+atlas = ExtResource("1_o5sqf")
+region = Rect2(16, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_pa8sh"]
+atlas = ExtResource("1_o5sqf")
+region = Rect2(32, 0, 16, 16)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_mbdnb"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_dp7mf")
+}],
+"loop": 0,
+"name": &"default",
+"speed": 10.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_o5sqf")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_v3eyd")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_pa8sh")
+}],
+"loop": 0,
+"name": &"pull",
+"speed": 15.0
+}]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_o5sqf"]
+radius = 8.0
+
+[node name="Lever" type="Area2D" unique_id=1028323502]
+collision_layer = 0
+collision_mask = 2
+
+[node name="LeverSprite" type="AnimatedSprite2D" parent="." unique_id=178422539 node_paths=PackedStringArray("leverAudio")]
+sprite_frames = SubResource("SpriteFrames_mbdnb")
+animation = &"pull"
+autoplay = "default"
+script = ExtResource("2_dp7mf")
+leverAudio = NodePath("../AudioStreamPlayer2D")
+
+[node name="LeverCollision" type="CollisionShape2D" parent="." unique_id=1325884181]
+shape = SubResource("CircleShape2D_o5sqf")
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="." unique_id=726556857]
+stream = ExtResource("3_v3eyd")
+
+[connection signal="body_entered" from="." to="LeverSprite" method="_on_lever_body_entered"]

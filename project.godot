@@ -23,6 +23,8 @@ buses/default_bus_layout="uid://c0vnr7xervot4"
 
 Music="*uid://brjp7dli5qdfr"
 RotatingCubeCheck="*uid://dy0ht8ysthnug"
+PlayerInfo="*uid://dpruvx8mexfvm"
+Globals="*uid://jbknflma17xr"
 
 [display]
 
