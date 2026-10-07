@@ -243,18 +243,35 @@ frame_progress = 0.16403118
 stream = ExtResource("5_64iq5")
 pitch_scale = 0.95
 
-[node name="PickupArea" type="Area2D" parent="FallingSword/SwordSprite" unique_id=1712974834 node_paths=PackedStringArray("sword", "button_sword_root")]
+[node name="PickupArea" type="Area2D" parent="FallingSword/SwordSprite" unique_id=1712974834 node_paths=PackedStringArray("sword", "button_sword_root", "falling_sword")]
 collision_layer = 0
 collision_mask = 2
 script = ExtResource("6_byjho")
 sword = NodePath("../..")
 button_sword_root = NodePath("../../..")
+falling_sword = NodePath("../..")
 
 [node name="PickupCollision" type="CollisionShape2D" parent="FallingSword/SwordSprite/PickupArea" unique_id=1117866024]
 shape = SubResource("CircleShape2D_078ji")
 
 [node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="FallingSword/SwordSprite/PickupArea" unique_id=706629797]
 stream = ExtResource("3_xtbwi")
+
+[node name="Label" type="Label" parent="FallingSword/SwordSprite/PickupArea" unique_id=5986019]
+z_index = 100
+offset_left = -12.857152
+offset_top = 82.85714
+offset_right = 139.14285
+offset_bottom = 175.85715
+rotation = 3.1415927
+scale = Vector2(0.6891688, 0.6891688)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 5
+theme_override_font_sizes/font_size = 32
+text = "Press \"F\"
+to pick up"
+horizontal_alignment = 1
+vertical_alignment = 1
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="FallingSword" unique_id=823817486]
 root_node = NodePath("../..")

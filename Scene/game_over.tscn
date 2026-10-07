@@ -1,0 +1,18 @@
+[gd_scene format=3 uid="uid://duhlminf05p7t"]
+
+[ext_resource type="Script" uid="uid://dgg7v3ws72mkr" path="res://Scrips/game_over.gd" id="1_iosw2"]
+
+[node name="GameOver" type="Node2D" unique_id=1835766226]
+script = ExtResource("1_iosw2")
+
+[node name="Label" type="Label" parent="." unique_id=35239041]
+offset_left = -383.0
+offset_top = -422.0
+offset_right = 383.0
+offset_bottom = -215.0
+theme_override_font_sizes/font_size = 74
+text = "Game over!
+You collected X coins!"
+horizontal_alignment = 1
+
+[node name="Camera2D" type="Camera2D" parent="." unique_id=725461349]

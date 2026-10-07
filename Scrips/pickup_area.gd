@@ -4,6 +4,7 @@ signal pickup(id)
 
 @export var sword: Node2D
 @export var button_sword_root: Node2D
+@export var falling_sword: Node2D
 
 var picked_up = false
 var pickupable = 0
@@ -25,4 +26,6 @@ func handle_pickup():
 		sword.visible = false
 
 func _process(delta: float) -> void:
+	collision_mask = 2 if falling_sword.on_ground else 0
+	$Label.visible = true if pickupable else false
 	handle_pickup()

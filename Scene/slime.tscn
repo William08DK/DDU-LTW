@@ -23,6 +23,22 @@ region = Rect2(48, 24, 24, 24)
 atlas = ExtResource("1_ssh8c")
 region = Rect2(72, 24, 24, 24)
 
+[sub_resource type="AtlasTexture" id="AtlasTexture_vnxak"]
+atlas = ExtResource("1_ssh8c")
+region = Rect2(48, 48, 24, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_sg7cw"]
+atlas = ExtResource("1_ssh8c")
+region = Rect2(48, 0, 24, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_bi7q7"]
+atlas = ExtResource("1_ssh8c")
+region = Rect2(24, 0, 24, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_yryro"]
+atlas = ExtResource("1_ssh8c")
+region = Rect2(0, 0, 24, 24)
+
 [sub_resource type="SpriteFrames" id="SpriteFrames_83t3l"]
 animations = [{
 "frames": [{
@@ -41,6 +57,23 @@ animations = [{
 "loop": 1,
 "name": &"default",
 "speed": 10.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_vnxak")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_sg7cw")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_bi7q7")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_yryro")
+}],
+"loop": 0,
+"name": &"die",
+"speed": 10.0
 }]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_078ji"]
@@ -58,8 +91,8 @@ shape = SubResource("RectangleShape2D_83t3l")
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1557308091]
 position = Vector2(0, -12)
 sprite_frames = SubResource("SpriteFrames_83t3l")
+animation = &"die"
 autoplay = "default"
-frame = 2
 flip_h = true
 
 [node name="KillZone" parent="." unique_id=992544669 instance=ExtResource("2_vnxak")]

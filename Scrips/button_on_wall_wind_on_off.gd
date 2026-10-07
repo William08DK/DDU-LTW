@@ -1,20 +1,19 @@
 extends Node2D
 
-@onready var windstream2: StaticBody2D = $"/root/Level2/TileMapLayer/Wind/Wind2"
-@onready var windstream3: StaticBody2D = $"/root/Level2/TileMapLayer/Wind/Wind3"
-@onready var button: Node2D = $Button
-var pressed = false
-func _ready() -> void:
-	windstream2.visible = false
-	windstream3.visible = false
-	pressed = false
-	_on_press_area_body_entered
-
+@export var windstream2: StaticBody2D
+@export var windstream3: StaticBody2D
+@export var moving_platform: AnimationPlayer
+@onready var animated_sprite: AnimatedSprite2D = $Button/ButtonSprite
+@onready var click_audio: AudioStreamPlayer2D = $Button/AudioStreamPlayer2D
+var pressed: bool = false
 
 func _on_press_area_body_entered(body: Node2D) -> void:
-	if pressed == true:
-		windstream2.visible
-		windstream3.visible
-	if pressed == false:
-		windstream2.notvisible
-		windstream3.notvisible
+	if pressed: return
+	animated_sprite.play("press")
+	click_audio.play()
+	windstream2.visible = true
+	windstream2.collision_layer = 8
+	windstream3.visible = true
+	windstream3.collision_layer = 8
+	moving_platform.play("Up_and_Down")
+	pressed = true

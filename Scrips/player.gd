@@ -6,6 +6,7 @@ const JUMP_VELOCITY: float = -320.0
 var knife = preload("res://Scene/knife.tscn")
 
 @export var camera_3d: Node3D
+@export var weapon_instruction: Label
 
 var gravity_multiplier: float = 1.0
 var gravity_rotation: float = 0.0
@@ -13,7 +14,7 @@ var gravity_rotation: float = 0.0
 var coyote_timeout: float = 0.0
 var has_jumped: bool = false
 
-var weapon: int = 1
+var weapon: int = 0
 
 var current_state: String = "idle"
 
@@ -138,3 +139,4 @@ func _on_wind_detector_set_wind(value: float, wind_rotation: float) -> void:
 
 func _on_button_on_wall_falling_sword_pickup_external(id: Variant) -> void:
 	weapon = id
+	weapon_instruction.visible = true

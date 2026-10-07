@@ -1,5 +1,7 @@
 extends CharacterBody2D
 
+signal boss_dead
+
 const SPEED = 5
 
 const MAX_HEATH = 10
@@ -33,11 +35,17 @@ func update_health_bar():
 
 func take_damage(amount):
 	health -= amount
+	$BossSprite.play("hurt")
 	if health <= 0:
-		$CollisionShape2D.queue_free()
-		$KillZone.queue_free()
+		$Collision.queue_free()
+		$KillZone2.queue_free()
 		$GetHurtZone.queue_free()
-		$Timer.start()
+		emit_signal("boss_dead")
 
 func _on_get_hurt_zone_body_entered(body: Node2D) -> void:
 	take_damage(body.get_meta("damage", 0))
+
+
+func _on_boss_sprite_animation_finished() -> void:
+	if $BossSprite.animation == "hurt":
+		$BossSprite.play("default")

@@ -23,6 +23,8 @@ func _process(delta: float) -> void:
 func take_damage(amount):
 	health -= amount
 	if health <= 0:
+		speed = 0
+		animated_sprite.play("die")
 		$CollisionShape2D.queue_free()
 		$KillZone.queue_free()
 		$GetHurtZone.queue_free()
