@@ -13,7 +13,7 @@ var gravity_rotation: float = 0.0
 var coyote_timeout: float = 0.0
 var has_jumped: bool = false
 
-var weapon: int = 0
+var weapon: int = 1
 
 var current_state: String = "idle"
 
@@ -135,7 +135,6 @@ func _on_pickup_area_pickup(id: int) -> void:
 func _on_wind_detector_set_wind(value: float, wind_rotation: float) -> void:
 	gravity_multiplier = value
 	gravity_rotation = wind_rotation
-
 
 func _on_button_on_wall_falling_sword_pickup_external(id: Variant) -> void:
 	weapon = id

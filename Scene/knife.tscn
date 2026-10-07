@@ -57,17 +57,19 @@ animations = [{
 }]
 
 [node name="Knife" type="RigidBody2D" unique_id=755406823]
-collision_layer = 0
+collision_layer = 64
+collision_mask = 32
 gravity_scale = 0.0
 script = ExtResource("1_e0kpo")
+metadata/damage = 1
 
 [node name="KnifeCollision" type="CollisionShape2D" parent="." unique_id=222397779]
 position = Vector2(8, -1)
 shape = SubResource("CircleShape2D_e0kpo")
 
 [node name="KnifeHurtArea" type="Area2D" parent="." unique_id=1992433816]
-collision_layer = 0
-collision_mask = 64
+collision_layer = 64
+collision_mask = 0
 
 [node name="KnifeHurtCollision" type="CollisionPolygon2D" parent="KnifeHurtArea" unique_id=1778150948]
 polygon = PackedVector2Array(2, 5, 6, 5, 16, -1, 16, -4, 2, -4)

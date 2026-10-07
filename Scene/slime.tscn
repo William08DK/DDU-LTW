@@ -4,6 +4,9 @@
 [ext_resource type="Script" uid="uid://c4cub837sltfx" path="res://Scrips/slime.gd" id="1_vnxak"]
 [ext_resource type="PackedScene" uid="uid://bjnbqwe0m8a83" path="res://Scene/kill_zone.tscn" id="2_vnxak"]
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_83t3l"]
+size = Vector2(12, 14)
+
 [sub_resource type="AtlasTexture" id="AtlasTexture_bte5j"]
 atlas = ExtResource("1_ssh8c")
 region = Rect2(0, 24, 24, 24)
@@ -40,11 +43,17 @@ animations = [{
 "speed": 10.0
 }]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_83t3l"]
-size = Vector2(12, 14)
+[sub_resource type="CircleShape2D" id="CircleShape2D_078ji"]
+radius = 8.062258
 
-[node name="Slime" type="Node2D" unique_id=704617479]
+[node name="Slime" type="RigidBody2D" unique_id=285160669]
+collision_layer = 2
+collision_mask = 65
 script = ExtResource("1_vnxak")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=777364228]
+position = Vector2(0, -7)
+shape = SubResource("RectangleShape2D_83t3l")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1557308091]
 position = Vector2(0, -12)
@@ -69,3 +78,17 @@ collision_mask = 9
 position = Vector2(0, -7)
 target_position = Vector2(-10, 0)
 collision_mask = 9
+
+[node name="GetHurtZone" type="Area2D" parent="." unique_id=1999621610]
+collision_layer = 0
+collision_mask = 64
+
+[node name="GetHurtCollision" type="CollisionShape2D" parent="GetHurtZone" unique_id=1503813258]
+position = Vector2(0, -7)
+shape = SubResource("CircleShape2D_078ji")
+
+[node name="Timer" type="Timer" parent="." unique_id=1021809362]
+wait_time = 0.5
+
+[connection signal="body_entered" from="GetHurtZone" to="." method="_on_get_hurt_zone_body_entered"]
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
