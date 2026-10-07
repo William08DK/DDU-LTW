@@ -10,7 +10,7 @@ func kill_player(body: Node2D, damage: int):
 	timer.start()
 
 func _on_body_entered(body: Node2D) -> void:
-	if not body is CharacterBody2D: return
+	if not "player" in body.get_groups(): return
 	kill_player(body, get_meta("damage", 0))
 
 func reload_scene():

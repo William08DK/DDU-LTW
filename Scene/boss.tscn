@@ -53,7 +53,7 @@ size = Vector2(12.000001, 1.0000005)
 size = Vector2(10.000002, 10.000002)
 
 [node name="Boss" type="CharacterBody2D" unique_id=1414193232]
-collision_layer = 0
+collision_layer = 2
 script = ExtResource("1_bv8a7")
 metadata/pos_x = 1200.0
 metadata/pos_y = -200.0
@@ -70,6 +70,7 @@ position = Vector2(0, -10)
 shape = SubResource("RectangleShape2D_ylbdr")
 
 [node name="KillZone2" parent="." unique_id=992544669 instance=ExtResource("3_46auw")]
+collision_layer = 0
 metadata/damage = 2
 
 [node name="KillCollision" type="CollisionShape2D" parent="KillZone2" unique_id=517973545]
@@ -87,7 +88,68 @@ position = Vector2(0, -50)
 scale = Vector2(4.999999, 4.999999)
 shape = SubResource("RectangleShape2D_bv8a7")
 
+[node name="GetHurtZone" type="Area2D" parent="." unique_id=688510373]
+collision_layer = 0
+collision_mask = 64
+
+[node name="KillCollision" type="CollisionShape2D" parent="GetHurtZone" unique_id=1895415296]
+position = Vector2(-1.9073484e-06, -10.000004)
+scale = Vector2(4.999999, 4.999999)
+shape = SubResource("RectangleShape2D_078ji")
+
+[node name="KillCollision2" type="CollisionShape2D" parent="GetHurtZone" unique_id=804670928]
+position = Vector2(2.3841853e-06, -22.5)
+scale = Vector2(4.999999, 4.999999)
+shape = SubResource("RectangleShape2D_mi78u")
+
+[node name="KillCollision3" type="CollisionShape2D" parent="GetHurtZone" unique_id=18414896]
+position = Vector2(0, -50)
+scale = Vector2(4.999999, 4.999999)
+shape = SubResource("RectangleShape2D_bv8a7")
+
 [node name="Timer" type="Timer" parent="." unique_id=409054762]
 wait_time = 2.0
 
+[node name="Control" type="Control" parent="." unique_id=1738839001]
+layout_mode = 3
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -26.0
+offset_top = -85.0
+offset_right = 26.0
+offset_bottom = -79.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="ColorRect" type="ColorRect" parent="Control" unique_id=2025679710]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -26.0
+offset_top = -3.0
+offset_right = 26.0
+offset_bottom = 3.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 1)
+
+[node name="HealthBar" type="ColorRect" parent="Control/ColorRect" unique_id=60100538]
+layout_mode = 1
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_left = 1.0
+offset_top = -2.0
+offset_right = 51.0
+offset_bottom = 2.0
+grow_vertical = 2
+color = Color(1, 0, 0, 1)
+
+[connection signal="body_entered" from="GetHurtZone" to="." method="_on_get_hurt_zone_body_entered"]
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

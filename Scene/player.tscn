@@ -236,7 +236,7 @@ radius = 5.0
 [sub_resource type="CircleShape2D" id="CircleShape2D_y8w33"]
 radius = 5.0
 
-[node name="Player" type="CharacterBody2D" unique_id=1745806591]
+[node name="Player" type="CharacterBody2D" unique_id=1745806591 groups=["player"]]
 z_index = 5
 collision_layer = 2
 script = ExtResource("1_y8w33")
