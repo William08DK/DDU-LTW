@@ -77,7 +77,6 @@ metadata/pos_y = -200.0
 position = Vector2(0, -59.999996)
 scale = Vector2(5, 5)
 sprite_frames = SubResource("SpriteFrames_078ji")
-animation = &"hurt"
 autoplay = "default"
 
 [node name="Collision" type="CollisionShape2D" parent="." unique_id=979326628]

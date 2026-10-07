@@ -38,6 +38,7 @@ func take_damage(amount):
 	$BossSprite.play("hurt")
 	if health <= 0:
 		$Collision.queue_free()
+		$Collision2.queue_free()
 		$KillZone2.queue_free()
 		$GetHurtZone.queue_free()
 		emit_signal("boss_dead")
