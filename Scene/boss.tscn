@@ -55,6 +55,9 @@ animations = [{
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ylbdr"]
 size = Vector2(70, 20)
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_46auw"]
+size = Vector2(50, 55)
+
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_078ji"]
 size = Vector2(14, 4.000001)
 
@@ -80,6 +83,10 @@ autoplay = "default"
 [node name="Collision" type="CollisionShape2D" parent="." unique_id=979326628]
 position = Vector2(0, -10)
 shape = SubResource("RectangleShape2D_ylbdr")
+
+[node name="Collision2" type="CollisionShape2D" parent="." unique_id=1016170937]
+position = Vector2(0, -47.5)
+shape = SubResource("RectangleShape2D_46auw")
 
 [node name="KillZone2" parent="." unique_id=992544669 instance=ExtResource("3_46auw")]
 collision_layer = 0
