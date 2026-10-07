@@ -1,0 +1,74 @@
+[gd_scene format=3 uid="uid://d3dnvc0mp8x0u"]
+
+[ext_resource type="Script" uid="uid://iv82tke6ndlk" path="res://Scrips/button_on_wall_wind_on_off.gd" id="1_lni0h"]
+[ext_resource type="Texture2D" uid="uid://cq6gg5kwq3dcf" path="res://Assets/Level_2/sprits/Sprite-Button2.png" id="2_0bsen"]
+[ext_resource type="AudioStream" uid="uid://jf5hvk4bieay" path="res://Assets/Custom/click.mp3" id="3_i0k34"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_2iyta"]
+atlas = ExtResource("2_0bsen")
+region = Rect2(0, 0, 25, 14)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_5ibnx"]
+atlas = ExtResource("2_0bsen")
+region = Rect2(0, 0, 25, 14)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_80co7"]
+atlas = ExtResource("2_0bsen")
+region = Rect2(25, 0, 25, 14)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_38sre"]
+atlas = ExtResource("2_0bsen")
+region = Rect2(50, 0, 25, 14)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_myikm"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_2iyta")
+}],
+"loop": 0,
+"name": &"default",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_5ibnx")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_80co7")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_38sre")
+}],
+"loop": 0,
+"name": &"press",
+"speed": 15.0
+}]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_swbwc"]
+radius = 9.0
+
+[node name="ButtonOnWallWindOnOff" type="Node2D" unique_id=1933582723]
+script = ExtResource("1_lni0h")
+
+[node name="Button" type="Node2D" parent="." unique_id=2097563475]
+
+[node name="ButtonSprite" type="AnimatedSprite2D" parent="Button" unique_id=1128838290]
+scale = Vector2(0.59037423, 0.59037423)
+sprite_frames = SubResource("SpriteFrames_myikm")
+animation = &"press"
+autoplay = "default"
+
+[node name="PressArea" type="Area2D" parent="Button/ButtonSprite" unique_id=1227676728]
+position = Vector2(0, 7)
+collision_layer = 0
+collision_mask = 2
+
+[node name="PressCollision" type="CollisionShape2D" parent="Button/ButtonSprite/PressArea" unique_id=925475782]
+position = Vector2(0, -7)
+shape = SubResource("CircleShape2D_swbwc")
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="Button" unique_id=387845033]
+stream = ExtResource("3_i0k34")
+
+[connection signal="body_entered" from="Button/ButtonSprite/PressArea" to="." method="_on_press_area_body_entered"]

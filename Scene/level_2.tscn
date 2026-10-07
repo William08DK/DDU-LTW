@@ -10,6 +10,7 @@
 [ext_resource type="Texture2D" uid="uid://cnvmxde11cfda" path="res://Assets/Level_2/sprits/Sprite-Lem.png" id="5_71r3i"]
 [ext_resource type="PackedScene" uid="uid://cr45xhq10myny" path="res://Scene/button_on_wall_falling_sword.tscn" id="5_vg3ep"]
 [ext_resource type="PackedScene" uid="uid://78pi2pq1ujyq" path="res://Scene/coin.tscn" id="6_f3pwq"]
+[ext_resource type="PackedScene" uid="uid://d3dnvc0mp8x0u" path="res://Scene/button_on_wall_wind_on_off.tscn" id="6_st5wq"]
 [ext_resource type="PackedScene" uid="uid://fnfid4svhnhr" path="res://Scene/platform.tscn" id="7_ccfm3"]
 [ext_resource type="Shader" uid="uid://brl4feon4rmqf" path="res://Shaders/cube_shader.gdshader" id="8_67jix"]
 [ext_resource type="PackedScene" uid="uid://b62o7npb675bv" path="res://Scene/slime.tscn" id="8_nquh6"]
@@ -331,6 +332,10 @@ metadata/sword_end_position = Vector2(392, 0)
 metadata/button_rotation = -90.0
 metadata/id = 1
 
+[node name="ButtonOnWallWindOnOff" parent="TileMapLayer" unique_id=1933582723 instance=ExtResource("6_st5wq")]
+position = Vector2(190, -141)
+rotation = 1.5707964
+
 [node name="Background" type="TileMapLayer" parent="TileMapLayer" unique_id=23556549]
 use_parent_material = true
 tile_set = SubResource("TileSet_g67xk")
@@ -343,7 +348,7 @@ scale = Vector2(1.6310766, 3.7875507)
 metadata/strength = -0.4
 
 [node name="Wind2" parent="TileMapLayer/Wind" unique_id=1063919081 instance=ExtResource("4_jte5b")]
-position = Vector2(328.99997, -185)
+position = Vector2(329, -185)
 scale = Vector2(1.7173202, 6.043955)
 metadata/strength = -0.4
 
